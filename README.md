@@ -35,10 +35,7 @@ The `register_inline_list_table` function allows for easy setup and configuratio
 table. Here's how to use it:
 
 ```php
-
-
-
-// Example usage of register_table_post_type to create a 'Conditional Fee' custom post type.
+// Example usage of register_inline_table_post_type to create a 'Conditional Fee' custom post type.
 register_inline_table_post_type(
     'conditional_fee',                          // The key for the custom post type.
     __( 'Conditional Fee', 'text-domain' ),     // The singular name of the custom post type for labels.
@@ -96,7 +93,7 @@ register_inline_list_table(
 	'edd-settings' // Submenu file slug for submenu highlighting.
 );
 
-// Registers a settings section for managing conditional fees within the product settings.
+// Registers a settings section for managing conditional fees within the extension settings.
 function register_section( array $sections ): array {
 	$sections['conditional_fees'] = __( 'Conditional Fees', 'edd-conditional-fees' );
 
@@ -105,7 +102,7 @@ function register_section( array $sections ): array {
 
 add_filter( 'edd_settings_sections_extensions', __NAMESPACE__ . '\\register_section' );
 
-// Adds settings for the 'Conditional Fees' section within the product settings, enabling the configuration of rules.
+// Adds settings for the 'Conditional Fees' section within the extension settings, enabling the configuration of rules.
 function register_settings( array $existing_settings ): array {
 	return array_merge( $existing_settings, [
 		'conditional_fees' => [
