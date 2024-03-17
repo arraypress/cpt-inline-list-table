@@ -1,0 +1,129 @@
+/* General styling for table headers and cells */
+.cpt-list-table th,
+.cpt-list-table td {
+    padding-left: 10px;
+}
+
+/* Hide sorting handles and row actions by default */
+.cpt-list-table .sort:before, .cpt-list-table .row-actions {
+    visibility: hidden !important;
+}
+
+/* Show sorting handles and row actions on row hover */
+.cpt-list-table tr:hover .sort:before, .cpt-list-table tr:hover > td > .row-actions {
+    visibility: visible !important;
+}
+
+/* Styling for action buttons container */
+.actionbuttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* Base style for buttons using dashicons */
+.cpt-list-table .button:before {
+    font-family: "dashicons";
+    vertical-align: middle;
+    height: 1.2em;
+    display: inline-block;
+    speak: none;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Icon for 'Add New' button */
+.cpt-list-table .add.button:before {
+    content: "\f502";
+}
+
+/* Icon for 'Reset Menu Order' button */
+.cpt-list-table .reset-menu-order.button:before {
+    content: "\f463";
+}
+
+/* Icon for 'Empty Trash' button */
+.cpt-list-table .delete-trash.button:before {
+    content: "\f182"; /* Dashicon code for trash */
+}
+
+/* Submenu link styling */
+.subsubsub {
+    margin-bottom: 10px;
+}
+
+/* Styling for per-page selector */
+.tablenav-per-page {
+    display: inline-block;
+    margin: 0 0 9px;
+}
+
+/* Allow rows to be sortable, excluding 'No Items' row */
+.cpt-list-table .ui-sortable tr:not(.no-items) {
+    cursor: move;
+}
+
+/* Alternate row background colors during drag operation */
+.striped.dragging > tbody > .ui-sortable-helper ~ tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+.striped.dragging > tbody > .ui-sortable-helper ~ tr:nth-child(odd) {
+    background: #fff;
+}
+
+/* Disable row cursor interaction during certain operations */
+.cpt-list-table .to-updating tr,
+.cpt-list-table .ui-sortable tr.inline-editor {
+    cursor: default;
+}
+
+/* Placeholder row style during sorting */
+.cpt-list-table .ui-sortable-placeholder {
+    outline: 1px dashed #bbb;
+    background: #f1f1f1 !important;
+    visibility: visible !important;
+}
+
+/* Helper row style during sorting */
+.cpt-list-table .ui-sortable-helper {
+    background-color: #fff !important;
+    outline: 1px solid #bbb;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.175);
+}
+
+/* Hide row actions on the helper row during sorting */
+.cpt-list-table .ui-sortable-helper .row-actions {
+    visibility: hidden;
+}
+
+/* Additional sortable table styling for clarity and usability */
+.cpt-list-table .ui-sortable tr {
+    cursor: move;
+}
+
+.cpt-list-table .ui-sortable tr.inline-editor {
+    cursor: default;
+}
+
+.cpt-list-table .cpt-updating tr {
+    cursor: default;
+}
+
+.cpt-list-table .ui-sortable-placeholder {
+    outline: 1px dashed #bbb;
+    background: #F1F1F1;
+    visibility: visible !important;
+}
+
+.cpt-list-table .ui-sortable-helper {
+    background-color: #fff;
+    outline: 1px solid #e1e1e1;
+}
+
+.cpt-list-table th.sortable, .cpt-list-table th.sorted {
+    padding: 10px;
+}

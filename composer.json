@@ -1,0 +1,27 @@
+{
+  "name": "arraypress/cpt-inline-list-table",
+  "description": "A WordPress plugin library providing an easy way to enhance admin interfaces with sortable, duplicable custom post type list tables for conditional rules, notices and more.",
+  "homepage": "https://github.com/arraypress/cpt-inline-list-table/",
+  "type": "library",
+  "license": "GPL-2.0-or-later",
+  "authors": [
+    {
+      "name": "David Sherlock",
+      "homepage": "https://arraypress.com/"
+    }
+  ],
+  "require": {
+    "php": "^7.4 || ^8.0",
+    "ext-json": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "ArrayPress\\WP\\CPT_Inline_List_Table": "src/"
+    },
+    "files": [
+      "src/Functions.php",
+      "src/Helper.php"
+    ]
+  },
+  "minimum-stability": "stable"
+}
