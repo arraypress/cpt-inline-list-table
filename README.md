@@ -37,12 +37,12 @@ table. Here's how to use it:
 ```php
 // Example usage of register_inline_table_post_type to create a 'Conditional Fee' custom post type.
 register_inline_table_post_type(
-    'conditional_fee',                          // The key for the custom post type.
-    __( 'Conditional Fee', 'text-domain' ),     // The singular name of the custom post type for labels.
-    __( 'Conditional Fees', 'text-domain' ),    // The plural name of the custom post type for labels.
-    'conditional_fee',                          // The slug for the custom post type.
-    [ 'excerpt', 'custom-fields', 'editor' ],   // (Optional) Additional features the post type supports.
-    false                                       // (Optional) Whether to expose this post type in the WordPress REST API. Enables use of the Gutenberg editor and REST API queries.
+    'conditional_fee',                                  // The key for the custom post type.
+    __( 'Conditional Fee', 'edd-conditional-fees' ),    // The singular name of the custom post type for labels.
+    __( 'Conditional Fees', 'edd-conditional-fees' ),   // The plural name of the custom post type for labels.
+    'conditional_fee',                                  // The slug for the custom post type.
+    [ 'excerpt', 'custom-fields', 'editor' ],           // (Optional) Additional features the post type supports.
+    false                                               // (Optional) Whether to expose this post type in the WordPress REST API. Enables use of the Gutenberg editor and REST API queries.
 );
 
 /**
@@ -65,7 +65,7 @@ register_inline_table_post_type(
 $columns = [
 	// Example of a custom column with a callback and formatter.
 	'amount'          => [
-		'label'     => __( 'Amount', 'edd-advanced-fees' ),
+		'label'     => __( 'Amount', 'edd-conditional-fees' ),
 		'callback'  => function ( $post ) {
 			return get_post_meta( $post->ID, 'amount', true );
 		},
@@ -75,7 +75,7 @@ $columns = [
 	],
 	// Example of a simple column that relies on automatic data sourcing.
 	'expiration_date' => [
-		'label' => __( 'Expiration Date', 'wp-conditional-discounts' ),
+		'label' => __( 'Expiration Date', 'edd-conditional-fees' ),
 		// No callback needed; the system will automatically search for 'expiration_date' in post object or meta.
 	]
 ];
