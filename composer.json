@@ -16,7 +16,7 @@
   },
   "autoload": {
     "psr-4": {
-      "ArrayPress\\WP\\CPT_Inline_List_Table": "src/"
+      "ArrayPress\\WP\\CPT_Inline_List_Table\\": "src/"
     },
     "files": [
       "src/Functions.php",

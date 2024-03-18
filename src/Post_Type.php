@@ -22,7 +22,7 @@
 namespace ArrayPress\WP\CPT_Inline_List_Table;
 
 /**
- * Check if the class `Register_Post_Type` is defined, and if not, define it.
+ * Check if the class `\\Post_Type` is defined, and if not, define it.
  */
 if ( ! class_exists( __NAMESPACE__ . '\\Post_Type' ) ) :
 
@@ -59,6 +59,11 @@ if ( ! class_exists( __NAMESPACE__ . '\\Post_Type' ) ) :
 		protected bool $show_in_rest = false;
 
 		/**
+		 * @var array Custom arguments to override the default post type arguments.
+		 */
+		protected array $args;
+
+		/**
 		 * Constructor for the custom post type registration class.
 		 * This constructor initializes the post type with provided settings and automatically registers it with WordPress during the 'init' action.
 		 *
@@ -68,14 +73,16 @@ if ( ! class_exists( __NAMESPACE__ . '\\Post_Type' ) ) :
 		 * @param string $slug                The slug for the post type, used in URLs and query vars.
 		 * @param array  $additional_supports An array of additional features that the post type supports. Default features include 'title' and 'page-attributes'.
 		 * @param bool   $show_in_rest        Whether to expose this post type in the WordPress REST API. Enables use of the Gutenberg editor and REST API queries.
+		 * @param array  $args                An associative array of custom arguments to override or extend the default post type registration settings.
 		 */
-		public function __construct( string $post_type, string $singular_name, string $plural_name, string $slug, array $additional_supports = [], bool $show_in_rest = true ) {
+		public function __construct( string $post_type, string $singular_name, string $plural_name, string $slug, array $additional_supports = [], bool $show_in_rest = true, array $args = [] ) {
 			$this->post_type           = $post_type;
 			$this->singular_name       = $singular_name;
 			$this->plural_name         = $plural_name;
 			$this->slug                = $slug;
 			$this->additional_supports = $additional_supports;
 			$this->show_in_rest        = $show_in_rest;
+			$this->args                = $args; // Store the custom arguments
 
 			add_action( 'init', [ $this, 'register' ] );
 		}
@@ -87,7 +94,7 @@ if ( ! class_exists( __NAMESPACE__ . '\\Post_Type' ) ) :
 			$labels   = $this->generate_labels();
 			$supports = array_merge( [ 'title', 'page-attributes' ], $this->additional_supports );
 
-			$args = [
+			$default_args = [
 				'labels'             => $labels,
 				'public'             => false,
 				'publicly_queryable' => false,
@@ -101,6 +108,9 @@ if ( ! class_exists( __NAMESPACE__ . '\\Post_Type' ) ) :
 				'show_in_rest'       => $this->show_in_rest,
 
 			];
+
+			// Merge the default args with the custom args, allowing for overrides
+			$args = array_merge( $default_args, $this->args );
 
 			register_post_type( $this->post_type, $args );
 		}

@@ -79,8 +79,9 @@ if ( ! function_exists( 'register_inline_table_post_type' ) ) {
 	 * @param string $slug                The slug for the post type, used in URLs and query vars.
 	 * @param array  $additional_supports An array of additional features that the post type supports. Default features include 'title' and 'page-attributes'.
 	 * @param bool   $show_in_rest        Whether to expose this post type in the WordPress REST API. Enables use of the Gutenberg editor and REST API queries.
+	 * @param array  $args                An associative array of custom arguments to override or extend the default post type registration settings.
 	 */
-	function register_inline_table_post_type( string $post_type, string $singular_name, string $plural_name, string $slug, array $additional_supports = [], bool $show_in_rest = true ) {
-		new Post_Type( $post_type, $singular_name, $plural_name, $slug, $additional_supports, $show_in_rest );
+	function register_inline_table_post_type( string $post_type, string $singular_name, string $plural_name, string $slug, array $additional_supports = [], bool $show_in_rest = true, array $args = [] ) {
+		new Post_Type( $post_type, $singular_name, $plural_name, $slug, $additional_supports, $show_in_rest, $args );
 	}
 }
