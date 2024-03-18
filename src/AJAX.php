@@ -32,7 +32,7 @@ if ( ! class_exists( __NAMESPACE__ . '\\AJAX' ) ) :
 		/**
 		 * The single instance of the class.
 		 *
-		 * @var AJAX
+		 * @var AJAX|null
 		 */
 		private static ?AJAX $instance = null;
 

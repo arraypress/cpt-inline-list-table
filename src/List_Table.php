@@ -33,14 +33,14 @@ use function wp_count_posts;
 /**
  * Check if the class `Table` is defined, and if not, define it.
  */
-if ( ! class_exists( __NAMESPACE__ . '\\Table' ) ) :
+if ( ! class_exists( __NAMESPACE__ . '\\List_Table' ) ) :
 	/**
 	 * List_Table class for custom post types.
 	 *
 	 * Extends the WP_List_Table class to provide a custom table view for a specific post type,
 	 * including support for custom columns, sorting, and actions.
 	 */
-	class Table extends WP_List_Table {
+	class List_Table extends WP_List_Table {
 
 		/**
 		 * Number of results to show per page.

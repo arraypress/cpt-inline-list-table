@@ -340,7 +340,7 @@ if ( ! class_exists( __NAMESPACE__ . '\\Register' ) ) :
 				return false; // Stop execution if there are validation errors
 			}
 
-			$table = new Table( [
+			$table = new List_Table( [
 				'post_type' => $this->post_type,
 				'columns'   => $this->column_callbacks,
 				'per_page'  => $this->per_page
