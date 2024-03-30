@@ -31,12 +31,12 @@ composer require arraypress/cpt-inline-list-table
 
 ### Example Usage
 
-The `register_inline_list_table` function allows for easy setup and configuration of your custom post type's inline list
+The `register_inline_table` function allows for easy setup and configuration of your custom post type's inline list
 table. Here's how to use it:
 
 ```php
 // Example usage of register_inline_table_post_type to create a 'Conditional Fee' custom post type.
-register_inline_table_post_type(
+register_inline_post_type(
     'conditional_fee',                                  // The key for the custom post type.
     __( 'Conditional Fee', 'edd-conditional-fees' ),    // The singular name of the custom post type for labels.
     __( 'Conditional Fees', 'edd-conditional-fees' ),   // The plural name of the custom post type for labels.
@@ -82,7 +82,7 @@ $columns = [
 
 // Registers an inline list table for a specified custom post type, configuring it with
 // custom columns, administrative URLs, and settings for menu highlighting.
-register_inline_list_table(
+register_inline_table(
 	'conditional_fee', // The custom post type identifier.
 	$columns, // Associative array of columns with render callbacks and formatters.
 	'edd_conditional_fees_table', // Hook name to attach the list table initialization.

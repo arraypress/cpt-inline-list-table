@@ -69,7 +69,7 @@ if ( ! function_exists( 'register_inline_table' ) ) {
 	}
 }
 
-if ( ! function_exists( 'register_inline_table_post_type' ) ) {
+if ( ! function_exists( 'register_inline_post_type' ) ) {
 	/**
 	 * Helper function to simplify the registration of custom post types for inline table display.
 	 *
@@ -81,7 +81,7 @@ if ( ! function_exists( 'register_inline_table_post_type' ) ) {
 	 * @param bool   $show_in_rest        Whether to expose this post type in the WordPress REST API. Enables use of the Gutenberg editor and REST API queries.
 	 * @param array  $args                An associative array of custom arguments to override or extend the default post type registration settings.
 	 */
-	function register_inline_table_post_type( string $post_type, string $singular_name, string $plural_name, string $slug, array $additional_supports = [], bool $show_in_rest = true, array $args = [] ) {
+	function register_inline_post_type( string $post_type, string $singular_name, string $plural_name, string $slug, array $additional_supports = [], bool $show_in_rest = true, array $args = [] ) {
 		new Post_Type( $post_type, $singular_name, $plural_name, $slug, $additional_supports, $show_in_rest, $args );
 	}
 }

@@ -66,7 +66,13 @@ if ( ! function_exists( 'get_duplicate_post_link' ) ) {
 			'_wpnonce' => wp_create_nonce( 'duplicate_post_' . $post->ID ),
 		), admin_url( 'post.php' ) );
 
-		// The nonce_url part is integrated directly into the duplicate link
+		/**
+		 * Filters the URL used for duplicating a post. This allows plugins and themes to modify the duplicate post link.
+		 * Useful for adding or removing query args, or changing the base URL, based on specific conditions or requirements.
+		 *
+		 * @param string $duplicate_link The URL to duplicate the post, including nonce for security.
+		 * @param int    $post_id        The ID of the post being duplicated.
+		 */
 		return apply_filters( 'cpt_inline_list_table_duplicate_post_link', $duplicate_link, $post->ID );
 	}
 }
@@ -83,6 +89,15 @@ if ( ! function_exists( 'check_edit_others_caps' ) ) {
 		$post_type_object = get_post_type_object( $post_type );
 		$edit_others_cap  = empty( $post_type_object ) ? 'edit_others_' . $post_type . 's' : $post_type_object->cap->edit_others_posts;
 
+		/**
+		 * Filters the capability check result for editing posts created by other users. This can be used to dynamically
+		 * alter permission checks, allowing or restricting user capabilities based on custom logic (e.g., user roles,
+		 * specific conditions, or post types).
+		 *
+		 * @param bool   $can_edit_others True if the current user has the capability to edit others' posts, false otherwise.
+		 * @param string $post_type       The post type being checked for the 'edit others' capability.
+		 */
+
 		return apply_filters( 'cpt_inline_list_table_edit_others_capability', current_user_can( $edit_others_cap ), $post_type );
 	}
 }
@@ -98,6 +113,14 @@ if ( ! function_exists( 'check_delete_others_caps' ) ) {
 	function check_delete_others_caps( string $post_type ): bool {
 		$post_type_object  = get_post_type_object( $post_type );
 		$delete_others_cap = empty( $post_type_object ) ? 'delete_others_' . $post_type . 's' : $post_type_object->cap->delete_others_posts;
+
+		/**
+		 * Filters the capability check result for deleting posts created by other users. Similar to the edit capability filter,
+		 * this allows for custom control over who can delete others' posts within specific contexts or conditions.
+		 *
+		 * @param bool   $can_delete_others True if the current user has the capability to delete others' posts, false otherwise.
+		 * @param string $post_type         The post type being checked for the 'delete others' capability.
+		 */
 
 		return apply_filters( 'cpt_inline_list_table_delete_others_capability', current_user_can( $delete_others_cap ), $post_type );
 	}
@@ -120,11 +143,14 @@ if ( ! function_exists( 'is_post_type_sortable' ) ) {
 		$sortable = ( post_type_supports( $post_type, 'page-attributes' ) && ! is_post_type_hierarchical( $post_type ) );
 
 		/**
-		 * Filters the determination of whether a post type is considered sortable.
+		 * Filters the determination of whether a post type is considered sortable. Sortability can be defined by themes
+		 * or plugins based on whether a post type supports 'page-attributes' and is not hierarchical. This filter allows
+		 * overriding the default sortability condition to accommodate custom logic or requirements for sorting posts.
 		 *
-		 * @param bool   $sortable  Whether the post type is sortable.
-		 * @param string $post_type The post type being checked.
+		 * @param bool   $sortable  Whether the post type is sortable, determined by support for 'page-attributes' and non-hierarchical structure.
+		 * @param string $post_type The post type being evaluated for sortability.
 		 */
-		return apply_filters( 'is_post_type_sortable', $sortable, $post_type );
+
+		return apply_filters( 'cpt_inline_list_table_post_type_sortable', $sortable, $post_type );
 	}
 }
